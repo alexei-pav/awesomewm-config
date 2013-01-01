@@ -115,7 +115,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Bind keyboard layout change hotkey
-awful.spawn.with_shell("setxkbmap -layout us,ru -option grp:alt_shift_toggle")
+awful.spawn.with_shell("setxkbmap -layout us,ru,es -option grp:alt_shift_toggle")
 
 -- {{{ Wibar
 -- Create a textclock widget

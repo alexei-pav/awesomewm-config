@@ -1,5 +1,10 @@
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
+--   _      ____  ____  ____  _     _  ____  _____  ____ 
+--  / \__/|/  _ \/   _\/   _\/ \ /|/ \/  _ \/__ __\/  _ \   Alexei Pavlov (alexei-pav)
+--  | |\/||| / \||  /  |  /  | |_||| || / \|  / \  | / \|   https://github.com/alexei-pav
+--  | |  ||| |-|||  \__|  \__| | ||| || |-||  | |  | \_/|   file: rc.lua 
+--  \_/  \|\_/ \|\____/\____/\_/ \|\_/\_/ \|  \_/  \____/   2024
+
+-- AwesomeWM config
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
@@ -20,7 +25,7 @@ require("awful.hotkeys_popup.keys")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
+-- n --symbolic /usr/share/icons/cursor_theme_name ~/.local/share/icons/defaultanother config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -45,7 +50,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -57,7 +62,9 @@ editor_cmd = terminal .. " -e " .. editor
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+modkey                 = "Mod4"
+altkey                 = "Mod1"
+ctrlkey                = "Control"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -82,7 +89,7 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+AwesomeMenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -90,13 +97,14 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+MainMenu = awful.menu({ items = { { "AwesomeWM", AwesomeMenu, beautiful.awesome_icon },
+                                    { "Terminal", terminal },
+                                    { "Firefox", "firefox" }
                                   }
                         })
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+                                     menu = MainMenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -169,7 +177,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

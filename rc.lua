@@ -99,7 +99,8 @@ AwesomeMenu = {
 
 MainMenu = awful.menu({ items = { { "AwesomeWM", AwesomeMenu, beautiful.awesome_icon },
                                     { "Terminal", terminal },
-                                    { "Firefox", "firefox" }
+                                    { "Firefox", "firefox" },
+                                    { "PCManFM", "pcmanfm" }
                                   }
                         })
 

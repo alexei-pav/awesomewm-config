@@ -57,6 +57,10 @@ terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
+-- Browser and filemanager
+filemanager 	= "thunar"
+browser 	= "librewolf"
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -99,8 +103,8 @@ AwesomeMenu = {
 
 MainMenu = awful.menu({ items = { { "AwesomeWM", AwesomeMenu, beautiful.awesome_icon },
                                     { "Terminal", terminal },
-                                    { "Firefox", "firefox" },
-                                    { "PCManFM", "pcmanfm" }
+                                    { "Browser", browser },
+                                    { "Files", filemanager }
                                   }
                         })
 
@@ -161,6 +165,7 @@ local tasklist_buttons = gears.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
+-- Set wallpaper
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then

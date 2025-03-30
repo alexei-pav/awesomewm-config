@@ -58,8 +58,8 @@ editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Browser and filemanager
-filemanager 	= "thunar"
-browser 	= "librewolf"
+filemanager 	= "pcmanfm"
+browser 	    = "librewolf"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
